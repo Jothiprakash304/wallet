@@ -1,0 +1,165 @@
+{
+"Email":"people@gmail.com",
+"Name":"people",
+"Mobile":"123456",
+"Password":"jothi",
+"Confirm_password":"jothi"
+}
+
+
+
+{
+"Card_number":"1234567891234567",
+"Expiry":"12/24",
+"CVV":"123",
+"name":"priyanka"
+}
+
+{
+"Card_number":"1234567891234567",
+"Expiry":"12/24",
+"CVV":"123",
+"name":"priyanka",
+"card_present":"True"
+}
+
+
+
+  const emailcell=row.insertCell();
+                <!-- emailcell.textContent=item.Email;
+                const datecell=row.insertCell();
+                datecell.textContent=item.Date; -->
+                const amountcell=row.insertCell();
+                amountcell.textContent=item.Amount;
+
+
+  <script>
+        fetch('details')
+        .then(response=>response.json())
+        .then(data=>{
+            
+            const table=document.querySelector('table');
+            data.forEach(item=>{
+                const row=table.insertRow();
+                const idcell=row.insertCell();
+                idcell.textContent=item.id;
+                const emailcell=row.insertCell();
+                emailcell.textContent=item.Email;
+                const datecell=row.insertCell();
+                datecell.textContent=item.Date;
+                const timecell=row.insertCell();
+                timecell.textContent=item.Time;
+                const amountcell=row.insertCell();
+                amountcell.textContent=item.Amount;
+            });
+
+        }); // Added a closing curly brace here.
+    </script>
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% block content %}
+    <h2 class="text-center">Transaction details of add money in your account</h2>
+    <button id="add-btn">Add</button>
+    <button id="withdraw-btn">Withdraw</button>
+    <table class="t" style="width:100%">
+      <tr>
+        <th>Transaction id</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Amount</th>
+      </tr>
+      {% for item in data %}
+      <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.Email}}</td>
+        <td>{{item.Date}}</td>
+        <td>{{item.Time}}</td>
+        <td>{{item.Amount}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+
+    <script src="{% static 'script/bootstrap.bundle.min.js' %}"></script>
+    <script>
+      const addbutton=document.getElementById('add-btn')
+      const withdrawbutton=document.getElementById('withdraw-btn')
+      const table=document.getElementById('t')
+
+      addbutton.addEventListener('click',()=>{
+        fetch('details')
+        .then(response=>response.json())
+        .then(data=>{
+          cleartable();
+          populatetable();
+        })
+        
+      });
+
+      withdrawbutton.addEventListener('click',()=>{
+        fetch('w_details')
+        .then(response=response.json())
+        .then(data=>{
+          cleartable()
+          populatetable(data)
+        })
+        .catch(error=>console.error(error))
+      })
+      function cleartable(){
+        while(table.rows.length>1){
+          table.deleterow(1)
+        }
+      }
+      function populatetable(data){
+        data.forEach(item=>{
+          const row=table.insertRow();
+          const idcell=row.insertCell();
+          idcell.textContent=item.id;
+          const emailcell=row.insertCell();
+          emailcell.textContent=item.Email;
+          const Datecell=row.insertCell();
+          Datecell.textContent=item.Date;
+          const timecell=row.insertCell();
+          timecell.textContent=item.Time;
+          const amountcell=row.insertCell();
+          amountcell.textContent=item.Amount;
+        })
+      }
+    </script>
+    {% endblock %}
+</body>
+</html>
+
+
+
+  email=user.Email
+        subject='Welcome to my app'
+        message='Thank You registering Cloudpay Wallet'
+        for_user=[email]
+        sender_email='sender@gmail.com'
+        try:
+            send_mail(subject,message,sender_email,for_user)
+        except BadHeaderError as e:
+            logger.error(f"Error sending email : {str(e)}")
+        except Exception as e:
+            logger.error(f"Error sending email : {str(e)}")

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS\style.css' %}">
+</head>
+<body>
+   {% block content %}
+   <div class="Withdraw">
+    <nav class="navbar navbar-expand-lg">
+     <img src="" alt="img">
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle-navigation">
+         <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="with-1">
+         <div class="collapse navbar-collapse" id="navbarNav">
+             <ul class="navbar-nav ml-auto">
+                 <li class="nav-item active">
+                     <h6>Balance</h6>
+                       <span>0.00</span>
+                 </li>
+                 
+                 <li class="nav-item active ml-8">
+                     <a class="nav-link" href="#">Help</a>
+                 </li>
+ 
+             </ul>
+ 
+         </div>
+     </div>
+    </nav> 
+ </div>
+ <h2 class="text-center my-3">Withdraw Money</h2>
+ <div class="with_2">
+  <form action="" id="withdraw" class="with-money">
+     {% csrf_token %}
+     <div class="with-3">
+         <label for="Amount">Amount</label>
+         <input class="" type="number" id="w">
+     </div>
+     
+     <div class="text-center">
+         <span id="error" style="color:red"></span>
+     </div>
+     <div class="">
+         <button class="with-5" type="submit">Withdraw</button>
+     </div>
+  </form>
+ </div>
+   <script src="{% static 'Script/bootstrap.bundle.min.js' %}"></script>
+   <script>
+    fetch('balance')
+    .then(response=>response.json())
+    .then(data=>{
+        const balanceElement=document.querySelector('.nav-item.active span')
+        balanceElement.textContent=data.balance
+    })
+    .catch(error=>{
+        console.error('Error',error)
+    })
+</script>
+<script>
+       document.getElementById('withdraw').addEventListener('submit',function(event){
+        event.preventDefault();
+        var a=document.getElementById('w').value
+
+        function displayError(errorMessage){
+            var errorElement=document.getElementById('error')
+            errorElement.textContent=errorMessage
+            
+        }
+        function clearErrors(){
+            var errorElement=document.getElementById()
+            errorElement.textContent=''
+        }
+        var form={
+            Amount:a
+           }
+
+        fetch('http://127.0.0.1:8000/withdraw',{
+            method:'PUT',
+            headers:{
+                'Content-type':'application/json',
+                
+            },
+            body:JSON.stringify(form)
+           })
+           .then(response=>{
+            if (response.status=='success'){
+                clearErrors();
+                return response.json()
+            }else{
+               return response.json().then(data=>{
+                    if (data.non_field_errors){
+                        displayError(data.non_field_errors[0])
+                    }else{
+                        displayError(data)
+                    }
+                })
+            }
+           })
+           .catch(error => {
+            console.error('Error:', error);
+        });
+       })
+</script>
+   {% endblock %}
+</body>
+</html>

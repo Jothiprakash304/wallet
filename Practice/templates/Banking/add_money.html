@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS\style.css' %}">
+</head>
+<body>
+    {% block content %}
+    <div class="add">
+       <nav class="navbar navbar-expand-lg">
+        <img src="" alt="img">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle-navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="add-1">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <h6>Balance</h6>
+                          <span>0.00</span>
+                    </li>
+                    
+                    <li class="nav-item active ml-8">
+                        <a class="nav-link" href="#">Help</a>
+                    </li>
+    
+                </ul>
+    
+            </div>
+        </div>
+       </nav> 
+    </div>
+    <h2 class="text-center my-3">Add Money</h2>
+    <div class="add_2">
+     <form action="" id="amount" class="add-money">
+        {% csrf_token %}
+        <div class="add-3">
+            <label for="Email">Amount</label>
+            <input class="" type="number" id="a">
+        </div>
+        <div class="add-4">
+            <label for="Message">Text</label>
+            <input class="" type="text" id="a">
+        </div>
+        <div class="text-center">
+            <span id="error"></span>
+        </div>
+        <div class="">
+            <button class="add-5" type="submit">Add</button>
+        </div>
+     </form>
+    </div>
+     <script>
+        document.getElementById('amount').addEventListener("submit",function(event){
+            event.preventDefault();
+            var Amount= document.getElementById('a').value
+            function displayError(errorElementId,errorMessage){
+                const errorElement=document.getElementById(errorElementId);
+                errorElement.textContent=errorMessage;
+                errorElement.style.color='red';
+            }
+            function clearErrors(errorElementId,errorMessage){
+                const errorElement=document.getElementById(errorElementId);
+                errorElement.textContent='';
+            }
+           var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+           var form={
+            Amount:Amount
+           }
+            fetch('http://127.0.0.1:8000/add_money',{
+            method:'PUT',
+            headers:{
+                'Content-type':'application/json',
+                
+            },
+            body:JSON.stringify(form)
+           })
+           .then(response=>response.json())
+           .then(data=>{
+            displayError('error',data)
+           })
+        })
+     </script>
+
+     <script src="{% static 'Script/bootstrap.bundle.min.js' %}"></script>
+     <script>
+        fetch('balance')
+        .then(response=>response.json())
+        .then(data=>{
+            const balanceElement=document.querySelector('.nav-item.active span')
+            balanceElement.textContent=data.balance
+        })
+        .catch(error=>{
+            console.error('Error',error)
+        })
+    </script>
+{% endblock %}
+    
+</body>
+</html>

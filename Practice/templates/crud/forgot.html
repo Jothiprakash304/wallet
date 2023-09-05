@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS\style.css' %}">
+</head>
+<body>
+    {% block content %}
+    
+    <form action="" id="forgot" class="forgot">
+        {% csrf_token %}
+    <div class="f1">
+        <label for="Email">Email</label>
+        <input class="form-control" type="email" id="email">
+    </div>
+    <div class="f2">
+        <label for="Password">Password</label>
+        <input class="form-control" type="password" id="password">
+    </div>
+    <div class="f3">
+        <label for="Confirm Password">Confirm Password</label>
+        <input class="form-control" type="password" id="c_password">
+    </div>
+    <div class="text-center">
+        <span id="forgot-error"></span>
+    </div>
+        <div class="f4">
+            <button class="btn btn-primary" type="submit">save</button>
+        </div>
+    </form>
+
+    <script src="{% static 'Script/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        document.getElementById('forgot').addEventListener('submit',function(event){
+            event.preventDefault();
+            var Email=document.getElementById('email').value;
+            var Password=document.getElementById('password').value;
+            var C_password=document.getElementById('c_password').value;
+            var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            function displayError(errorElementId,errorMessage){
+                const errorElement=document.getElementById(errorElementId);
+                errorElement.textContent=errorMessage;
+                errorElement.style.color='red';
+            }
+            function clearErrors(errorElementId,errorMessage){
+                const errorElement=document.getElementById(errorElementId);
+                errorElement.textContent='';
+            }
+        
+            var form={
+                email:Email,
+                password:Password,
+                c_password:C_password
+            };
+            fetch(`http://127.0.0.1:8000/f/${Email}`,{
+                method:'PUT',
+                headers:{
+                    'Content-type':'application/json',
+                    'X-CSRFToken': csrfToken
+
+                },
+                body:JSON.stringify(form)
+            })
+            .then(response=>response.json()) 
+            .then(data=>{
+                displayError('forgot-error',data)
+            })
+        })
+    </script>
+    {% endblock %}
+</body>
+</html>

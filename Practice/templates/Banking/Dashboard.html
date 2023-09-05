@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS\style.css' %}">
+</head>
+<body>
+    {% block content %}
+    <div class="dash">
+        <nav class="navbar navbar-expand-lg ">
+            <!-- <a class="navbar-brand " href="#">Cloud</a> -->
+            <img src="" alt="IMG">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle-navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="dash1">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <h6>Balance</h6>
+                          <span>0.00</span>
+                    </li>
+                    
+                    <li class="nav-item active ml-8">
+                        <a class="nav-link" href="#">Help</a>
+                    </li>
+                    <div class="dropdown">
+                        <button class="dropbtn">Account</button>
+                        <div class="dropdown-content">
+                            <a href="/trans">Account Details</a>
+                            <a href="#" id="logout_id">Logout</a>
+                        </div>
+                        
+                    </div>
+                </ul>
+    
+            </div>
+        </div>
+    
+        </nav>
+    </div>
+    <div class="container my-5 text-center">
+        <h3>Welcome to cloudpay Wallet</h3>
+    </div>
+    <div class="container">
+        <div class="row ">
+            <div class="col-3">
+            </div>
+            <div class="col-6 my-5 d-flex justify-content-between">
+                <a href="/add"><button class="b-1">Add Money </button></a>
+                <a href="/with"><button class="b-2">
+                    Withdraw
+                </button></a>
+                <a href="/send"><button class="b-3">Send Money</button></a>
+            </div>
+            <div class="col-3">
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="{% static 'Script/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        fetch('balance')
+        .then(response=>response.json())
+        .then(data=>{
+            const balanceElement=document.querySelector('.nav-item.active span')
+            balanceElement.textContent=data.balance
+        })
+        .catch(error=>{
+            console.error('Error',error)
+        })
+    </script>
+   <!-- ... Your HTML content ... -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const logoutButton = document.getElementById('logout_id');
+        logoutButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+            try {
+                const response = await fetch('logout', {  // Make sure the URL is correct
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                });
+                const data = await response.json();
+                if (data.message === 'success') {
+                    window.location.href = 'login';
+                } else {
+                    console.error("Logout failed");
+                }
+            } catch (error) {
+                console.error('Error', error);
+            }
+        });
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.startsWith(name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    });
+</script>
+<!-- ... Rest of your HTML content ... -->
+
+    {% endblock %}
+</body>
+</html>

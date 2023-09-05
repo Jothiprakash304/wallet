@@ -1,0 +1,7 @@
+{
+"Email":"jot@gmail.com",
+"Name":"jothi",
+"Mobile":"123456",
+"Password":"jothi",
+"Confirm_password":"jothi"
+}

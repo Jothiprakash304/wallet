@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS\style.css' %}">
+</head>
+<body class="body">
+    {% block content %}
+    <div class="n1">
+    <nav class="navbar navbar-expand-lg ">
+        <!-- <a class="navbar-brand " href="#">Cloud</a> -->
+        <img src="" alt="IMG">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle-navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="move">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Help</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+    </nav>
+</div>
+    <h1 class="text-center">Registration Form</h1>
+    <form method="POST" action="" id="form" class="form">
+        {% csrf_token %}
+    <div class="group1">
+        <label for="Email" class="form-label">Email:</label>
+        <input class="form-control" type="email" id="Email" name="Email">
+        <span class="error" id="Email-error"></span>
+    </div>
+    <div class="group2">
+        <label for="name">Name:</label>
+        <input class="form-control" type="text" id="Name" name="Name">
+        <span class="error1" id="Name-error"></span>
+    </div>
+    <div class="group3">
+        <label for="number">Mobile:</label>
+        <input class="form-control" type="number" id="number" name="number">
+        <span class="error2" id="Mobile-error"></span>
+    </div>
+    <div class="group4">
+        <label for="password">Password:</label>
+        <input class="form-control" type="password" id="password" name="password">
+        <span class="error3" id="Password-error"></span>
+    </div>
+    <div class="group5">
+        <label for="Confirm_password">Confirm Password:</label>
+        <input class="form-control" type="password" id="Confirm_password" name="Confirm_password">
+        <span class="error4" id="C_password-error"></span>
+    </div>
+    <div class="group6">
+        <button class="btn btn-primary" type="submit">Register</button>
+    </div>
+      </form>
+     
+      <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var email = document.getElementById('Email').value;
+            var name = document.getElementById('Name').value;
+            var mobile = document.getElementById('number').value;
+            var password = document.getElementById('password').value;
+            var Confirm_password = document.getElementById('Confirm_password').value;
+        
+            function displayError(errorElementId, errorMessage) {
+                const errorElement = document.getElementById(errorElementId);
+                errorElement.textContent = errorMessage;
+                errorElement.style.color = 'red';
+            }
+        
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+        
+            function clearErrors(errorElementId) {
+                const errorElement = document.getElementById(errorElementId);
+                errorElement.textContent = '';
+            }
+        
+            function validateEmail() {
+                var email = document.getElementById('Email');
+                if (email.value.trim() === '') {
+                    displayError('Email-error', 'Email is Required');
+                    return false;
+                } else if (!isValidEmail(email.value.trim())) {
+                    displayError('Email-error', 'Invalid Email format');
+                    return false;
+                } else {
+                    clearErrors('Email-error');
+                    return true;
+                }
+            }
+        
+            function validateName() {
+                var Name = document.getElementById('Name');
+                if (Name.value.trim() === '') {
+                    displayError('Name-error', '*Name is Required');
+                    return false;
+                } else {
+                    clearErrors('Name-error');
+                    return true;
+                }
+            }
+        
+            function validateMobile() {
+                var mobile = document.getElementById('number');
+                if (mobile.value.trim() === '') {
+                    displayError('Mobile-error', '*Mobile is required');
+                    return false;
+                } else {
+                    clearErrors('Mobile-error');
+                    return true;
+                }
+            }
+        
+            function validatepassword() {
+                var password = document.getElementById('password');
+                if (password.value.trim() === '') {
+                    displayError('Password-error', '*Password is required');
+                    return false;
+                } else {
+                    clearErrors('Password-error');
+                    return true;
+                }
+            }
+        
+            function validate_c_password() {
+                var password = document.getElementById('Confirm_password');
+                if (password.value.trim() === '') {
+                    displayError('C_password-error', '*Confirm_password is required');
+                    return false;
+                } else {
+                    clearErrors('C_password-error');
+                    return true;
+                }
+            }
+        
+            let Email_1 = validateEmail();
+            let Name_2 = validateName();
+            let Mobile_3 = validateMobile();
+            let Password_4 = validatepassword();
+            let C_password_5 = validate_c_password();
+        
+            if (Email_1 && Name_2 && Mobile_3 && Password_4 && C_password_5) {
+                var form = {
+                    Email: email,
+                    Name: name,
+                    Mobile: mobile,
+                    Password: password,
+                    Confirm_password: Confirm_password
+                };
+        
+                fetch('http://127.0.0.1:8000/a', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(form)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        displayError('Email-error', data.error);
+                    } else {
+                        window.location.href = 'login';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error', error);
+                });
+            }
+        });
+        
+    </script>
+    <script src="{% static 'Script\bootstrap.bundle.min.js' %}"></script>
+{% endblock %}
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

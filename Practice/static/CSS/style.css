@@ -1,0 +1,416 @@
+/* Register page */
+
+.group1{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 50px;
+    
+}
+.group2{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 50px;
+}
+.group3{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 50px;
+}
+.group4{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 50px;
+}
+.group5{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 50px; 
+}
+.group6{
+       margin-left: 200px;
+       margin-bottom: 10px;
+}
+.form{
+    width: 500px;
+    border: 1px solid rgba(32, 32, 35, 0.873);
+    border-radius: 5px;
+    margin-left: 490px;
+    background-color: rgba(9, 234, 69, 0.245);
+}
+.body{
+    background-color: rgba(31, 20, 22, 0.01);
+}
+.n1{
+    background-color: rgba(0, 0, 0, 0.267);
+    padding: auto;
+}
+.navbar-nav .nav-item {
+    margin-right: 35px; /* Adjust this value to set the desired space between items */
+  }
+.move{
+    margin-left: auto;
+    display:flex;
+    justify-content: flex-end;
+}
+
+/* Register page */
+
+
+
+
+
+/* 
+Login page */
+.color1{
+    background-color: rgba(2, 54, 32, 0.141);
+}
+.move{
+    margin-left: 1200px;
+}
+.login{
+    width: 500px;
+    border:1px solid black;
+    border-radius: 5px;
+    margin-left: 520px;
+    margin-top: 20px;
+    background-color: rgba(9, 168, 14, 0.134);
+}
+.l1{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 50px;
+}
+.l2{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 50px;
+}
+.l3{
+    margin-left: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.b1{
+    padding: 7px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: aqua;
+    border: none;
+    background-color: rgba(71, 40, 2, 0.637);
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.bl:hover {background-color: rgba(17, 225, 125, 0.777);}
+.b1:active {
+    background-color: rgb(1, 185, 31);
+    transform: translateY(10px);
+}
+.b2{
+    padding: 7px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: aqua;
+    border: none;
+    background-color: rgba(104, 17, 17, 0.511);
+    border-radius: 10px;
+    margin-left: 5px;
+}
+.b2:active {
+    background-color: green;
+    transform: translateY(10px);
+}
+/* login page */
+
+
+
+
+
+
+/* forgot password page */
+.forgot{
+    width: 500px;
+    border:1px solid black;
+    border-radius: 5px;
+    margin-left: 500px;
+    margin-top: 20px;
+    background-color: rgba(25, 160, 115, 0.662);
+}
+.f1{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 50px; 
+}
+.f2{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 50px; 
+}
+
+.f3{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 50px; 
+}
+/* forgot password */
+
+
+
+
+/* dashboard css */
+
+.dash{
+    background-color: rgba(0, 0, 0, 0.267);
+    padding: auto;
+}
+.navbar-nav .nav-item {
+    margin-right: 30px; /* Adjust this value to set the desired space between items */
+  }
+.dash1{
+    margin-left: auto;
+    display:flex;
+    justify-content: flex-end;
+}
+    /* dashboard button */
+.b-1{
+    background-color: black;
+    color: aquamarine;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.b-2{
+    background-color: black;
+    color: aquamarine;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.b-3{
+    background-color: black;
+    color: aquamarine;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.b-1:hover{
+    background-color: rgb(15, 210, 58);
+    cursor: pointer;
+}
+.b-2:hover{
+    background-color: blue;
+    cursor: pointer;
+}
+.b-3:hover{
+    background-color: blue;
+    cursor: pointer;
+}
+.dropbtn{
+    background-color: rgba(43, 26, 233, 0.433);
+    color: blue;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position:absolute;
+    background-color: rgba(188, 126, 9, 0.649);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(194, 4, 4, 0.678);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+
+
+
+/* dashboard css */
+
+
+
+
+
+
+/* 
+add money css */
+
+.add{
+    background-color: rgba(40, 2, 2, 0.307);
+    padding: auto;
+}
+.add-1{
+    margin-left: auto;
+    display:flex;
+    justify-content: flex-end;
+}
+
+.add-3{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 90px;
+    margin-top: 20px;
+}
+.add-4{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 1000px;
+    margin-left: 70px;
+}
+.add-4 input{
+    width: 300px;
+    height: 50px;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.add-4 textarea {
+    width: 300px; /* Set the desired width for the textarea */
+    height: 150px; /* Set the desired height for the textarea */
+    font-size: 16px; /* Set the font size for the text */
+  }
+.add-5{
+    margin-left: 200px;
+    margin-bottom: 10px;
+    background-color: black;
+    color: aquamarine;
+    font-size: 18px;
+    width: 70px;
+    height: 30px;
+}
+
+.add-5:hover{
+    background-color: blue;
+    cursor: pointer;
+}
+.add-money{
+    width: 500px;
+    height: 200px;
+    border: 1px solid rgba(32, 32, 35, 0.873);
+    border-radius: 5px;
+    margin-left: 490px;
+    background-color: rgba(9, 234, 69, 0.245);
+}
+
+/* add money css */
+
+
+
+
+
+/* withdraw css */
+.Withdraw{
+    background-color: rgba(40, 2, 2, 0.307);
+    padding: auto;
+}
+.with-1{
+    margin-left: auto;
+    display:flex;
+    justify-content: flex-end;
+}
+
+.with-3{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 400px;
+    margin-left: 90px;
+    margin-top: 20px;
+}
+.with-4{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 1000px;
+    margin-left: 70px;
+}
+.with-4 input{
+    width: 300px;
+    height: 50px;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.with-4 textarea {
+    width: 300px; /* Set the desired width for the textarea */
+    height: 150px; /* Set the desired height for the textarea */
+    font-size: 16px; /* Set the font size for the text */
+  }
+.with-5{
+    margin-left: 200px;
+    margin-bottom: 10px;
+    background-color: black;
+    color: aquamarine;
+    font-size: 18px;
+    width: 100px;
+    height: 30px;
+}
+
+.with-5:hover{
+    background-color: blue;
+    cursor: pointer;
+}
+.with-money{
+    width: 500px;
+    height: 200px;
+    border: 1px solid rgba(32, 32, 35, 0.873);
+    border-radius: 5px;
+    margin-left: 490px;
+    background-color: rgba(9, 234, 69, 0.245);
+}
+
+/* withdraw css */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+send money page */
+.send{
+    background-color: rgba(10, 23, 24, 0.592);
+}
